@@ -29,7 +29,7 @@ string[] SmallString(string[] array)
         {
             smallArray[temp] = array[i];
             temp++;
-        }   
+        }
     }
     return smallArray;
 }
@@ -51,6 +51,59 @@ void PrintArray(string[] array)
     Console.Write("]");
 }
 
-string[] array = new string[] {"Kazan", "1567", "RB", "BMW", "Titanic", "PIS"};
+string[] CreateArray()
+{
+    // Ввод строк с клавиатуры
+    // и образование нового массива
 
+    // 1. Объявление переменных
+    string[] AS; // ссылка на массив строк
+    int count; // текущее количество строк в массиве
+    string s;
+    string[] AS2; // дополнительная переменная-ссылка - сохраняет старый массив строк
+
+    // 2. Цикл ввода строк
+    Console.WriteLine("Введите строку латиницей (для завершения ввода введите пустую строку):");
+
+    count = 0; // обнулить количество строк
+    AS = new string[count]; // выделить память для 0 строк
+
+    do
+    {
+        // Ввести строку
+        s = Console.ReadLine();
+
+        // Проверка, пустая ли строка
+        if (s != "")
+        {
+            // если строка не пустая, то добавить строку в массив
+            count++;
+
+            // предварительно выделить память для нового массива
+            // в котором на 1 элемент больше
+            AS2 = new string[count];
+
+            // скопировать старый массив в новый
+            for (int i = 0; i < AS2.Length - 1; i++)
+                AS2[i] = AS[i];
+
+            // добавить последнюю введенную строку в массив AS2
+            AS2[count - 1] = s;
+
+            // Освобождать память, предварительно выделенную под AS не нужно,
+            // этим занимается сборщик мусора
+
+            // перенаправить ссылку AS на AS2
+            AS = AS2;
+        }
+    } while (s != "");
+    return AS;
+}
+
+
+string[] array = CreateArray();
+Console.WriteLine("Ваш массив: ");
+PrintArray(array);
+Console.WriteLine("\n");
+Console.WriteLine("Обработанный массив: ");
 PrintArray(SmallString(array));
