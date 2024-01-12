@@ -9,10 +9,11 @@
 */
 
 string[] SmallString(string[] array)
+// Функция поиска слов меньше или равным 3 символов и ввод их в отдельный массив
 {
     int smallStringCount = 0;
     int temp = 0;
-
+// Определение количества коротких слов для инициализации второго массива
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i].Length <= 3)
@@ -22,7 +23,7 @@ string[] SmallString(string[] array)
     }
 
     string[] smallArray = new string[smallStringCount];
-
+// Внесение коротких слов во второй массив
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i].Length <= 3)
@@ -35,6 +36,7 @@ string[] SmallString(string[] array)
 }
 
 void PrintArray(string[] array)
+// Функция печати массива
 {
     Console.Write("[");
     for (int i = 0; i < array.Length; i++)
@@ -54,26 +56,23 @@ void PrintArray(string[] array)
 string[] CreateArray()
 {
     // Ввод строк с клавиатуры
-    // и образование нового массива
 
-    // 1. Объявление переменных
+    // Объявление переменных
     string[] AS; // ссылка на массив строк
     int count; // текущее количество строк в массиве
     string s;
     string[] AS2; // дополнительная переменная-ссылка - сохраняет старый массив строк
 
-    // 2. Цикл ввода строк
+    // Цикл ввода строк
     Console.WriteLine("Введите строку латиницей (для завершения ввода введите пустую строку):");
 
-    count = 0; // обнулить количество строк
-    AS = new string[count]; // выделить память для 0 строк
+    count = 0;
+    AS = new string[count];
 
     do
     {
-        // Ввести строку
         s = Console.ReadLine();
 
-        // Проверка, пустая ли строка
         if (s != "")
         {
             // если строка не пустая, то добавить строку в массив
@@ -90,9 +89,6 @@ string[] CreateArray()
             // добавить последнюю введенную строку в массив AS2
             AS2[count - 1] = s;
 
-            // Освобождать память, предварительно выделенную под AS не нужно,
-            // этим занимается сборщик мусора
-
             // перенаправить ссылку AS на AS2
             AS = AS2;
         }
@@ -100,7 +96,7 @@ string[] CreateArray()
     return AS;
 }
 
-
+// Вызов функций
 string[] array = CreateArray();
 Console.WriteLine("Ваш массив: ");
 PrintArray(array);
